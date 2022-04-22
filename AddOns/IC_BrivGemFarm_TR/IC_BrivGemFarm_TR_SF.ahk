@@ -11,6 +11,9 @@ class IC_SharedFunctions_Class_TR extends IC_BrivSharedFunctions_Class ; extends
          if (g_BrivUserSettings[ "TRAvoid" ] AND mod(g_SF.Memory.ReadCurrentZone(),5) != g_BrivUserSettings[ "TRJumpZone" ] ) ;Decide between walk or jump to next level
             return true
 
+        if (mod(g_SF.Memory.ReadCurrentZone(),5) = 3 OR mod(g_SF.Memory.ReadCurrentZone(),5) = 0 ) ;If on zone 3 or 5 then walk
+            return true
+ 
         if (g_BrivUserSettings[ "TRexactStack" ] > 0 AND g_SF.Memory.ReadCurrentZone() <= g_BrivUserSettings[ "StackZone" ] +1) ;Walk to stack level
             if (g_SF.Memory.ReadCurrentZone() >= g_BrivUserSettings[ "StackZone" ] - g_BrivUserSettings[ "TRexactStack" ] AND g_SF.Memory.ReadCurrentZone() AND g_BrivUserSettings[ "EarlyStacking" ] )
                 return true
@@ -37,6 +40,10 @@ class IC_SharedFunctions_Class_TR extends IC_BrivSharedFunctions_Class ; extends
     {
         if (g_BrivUserSettings[ "TRAvoid" ] AND mod(g_SF.Memory.ReadCurrentZone(),5) != g_BrivUserSettings[ "TRJumpZone" ] ) ;Decide between walk or jump to next level
             return false
+
+       if (mod(g_SF.Memory.ReadCurrentZone(),5) = 3 OR mod(g_SF.Memory.ReadCurrentZone(),5) = 0 ) ;If on zone 3 or 5 then walk
+            return false
+		
         if (g_BrivUserSettings[ "TRexactStack" ] > 0 AND g_SF.Memory.ReadCurrentZone() <= g_BrivUserSettings[ "StackZone" ] +1)
             if (g_SF.Memory.ReadCurrentZone() >= g_BrivUserSettings[ "StackZone" ] - g_BrivUserSettings[ "TRexactStack" ] AND g_SF.Memory.ReadCurrentZone() AND g_BrivUserSettings[ "EarlyStacking" ] )
                 return false
